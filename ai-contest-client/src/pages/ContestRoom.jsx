@@ -499,7 +499,7 @@ function ContestRoom() {
         .contest-sidebar__list::-webkit-scrollbar,
         .contest-main__messages::-webkit-scrollbar {
           width: 5px;
-          
+
         }
         .contest-sidebar__list::-webkit-scrollbar-track,
         .contest-main__messages::-webkit-scrollbar-track {
@@ -587,7 +587,7 @@ function ContestRoom() {
                                 : "bg-red-600 hover:bg-red-500"
                           }`}
                         >
-                          {status === "not-started"
+                          {selectedContest?.status?.toLowerCase() === "not-started"
                             ? "Start Contest"
                             : ["completed", "ended"].includes(selectedContest?.status?.toLowerCase())
                               ? "Contest Ended"
