@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { SOCKET_EVENTS } from "../../services/socket/socketevents/socketEvents";
 import { socket } from "../../services/socket/socket";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
-function SubmissionCard({message, currentUserEmail, maxRank = 3, onSubmitRank}) {
-
+function SubmissionCard({message, hostId , currentUserEmail, maxRank = 3, onSubmitRank}) {
+  const { user } = useContext(AuthContext)
+    console.log(message , "This is from the host cards") 
   const [rank, setRank] = useState("");
   const isUserMessage = currentUserEmail === message?.email;
   const handleRankChange = (e) => {
@@ -43,7 +46,7 @@ function SubmissionCard({message, currentUserEmail, maxRank = 3, onSubmitRank}) 
             {isUserMessage ? "You" : message?.email || "Participant"}
           </p>
           <p>Rank</p>
-          {console.log(message)}
+      
           {message?.participants?.map((participant, index)=> <p key={index}>{participant?.participantRank}</p>)}
           <p>{message?.rank || message?.participantRank}</p>
         </div>
@@ -72,7 +75,8 @@ function SubmissionCard({message, currentUserEmail, maxRank = 3, onSubmitRank}) 
         </div>
 
         {/* ───────────────── HOVER POPUP ───────────────── */}
-        <div className="absolute inset-0 z-50 flex items-center justify-center rounded-3xl bg-black/70 p-5 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
+        {hostId === user?.id &&
+                <div className="absolute inset-0 z-50 flex items-center justify-center rounded-3xl bg-black/70 p-5 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
           <div className="w-full max-w-sm rounded-2xl border border-cyan-500/20 bg-[#081120] p-5 shadow-[0_0_40px_rgba(0,255,255,0.12)]">
             {/* Title */}
             <h2 className="mb-4 text-lg font-bold text-white">
@@ -132,6 +136,8 @@ function SubmissionCard({message, currentUserEmail, maxRank = 3, onSubmitRank}) 
             </button>
           </div>
         </div>
+        }
+
       </div>
     </div>
   );

@@ -151,115 +151,106 @@ function Login() {
     autoLogin();
   }, []);
 
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_top,_#0f172a,_#000)] px-4">
+ return (
+  <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-black px-4">
 
-      {/* Background Glow */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
+    {/* Background Glow */}
+    <div className="pointer-events-none absolute inset-0">
+      <div className="absolute left-1/2 top-[-10%] h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="absolute bottom-[-20%] right-[-10%] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[120px]" />
+    </div>
+
+    {/* Card */}
+    <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl">
+
+      {/* Heading */}
+      <div className="mb-8 text-center">
+        <h1 className="bg-gradient-to-r from-cyan-300 via-cyan-400 to-blue-500 bg-clip-text text-4xl font-extrabold text-transparent">
+          Welcome
+        </h1>
+
+        <p className="mt-3 text-sm text-gray-400">
+          Login or create your account instantly
+        </p>
       </div>
 
-      {/* Card */}
-      <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-cyan-500/10 backdrop-blur-xl">
+      {/* Info Banner */}
+      <div className="mb-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm text-cyan-100">
+        <p className="font-semibold">One-Step Authentication</p>
+        <p className="mt-1 text-cyan-200/80 leading-relaxed">
+          If your account exists, you'll be logged in automatically.
+          Otherwise, a new account will be created.
+        </p>
+      </div>
 
-        {/* Heading */}
-        <div className="mb-8 text-center">
-          <h1 className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-4xl font-extrabold text-transparent">
-            Welcome
-          </h1>
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-5">
 
-          <p className="mt-3 text-sm text-gray-400">
-            Login or create your account instantly
-          </p>
+        {/* Email */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-300">
+            Email
+          </label>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none transition duration-300 placeholder:text-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+            required
+          />
         </div>
 
-        {/* Info Banner */}
-        <div className="mb-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm text-cyan-100">
-          <p className="font-semibold">
-            One-Step Authentication
-          </p>
+        {/* Password */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-300">
+            Password
+          </label>
 
-          <p className="mt-1 text-cyan-200/80">
-            If your account already exists,
-            you&apos;ll be logged in automatically.
-            Otherwise, a new account will be
-            created for you.
-          </p>
+          <input
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none transition duration-300 placeholder:text-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+            required
+          />
         </div>
 
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-5"
+        {/* Hint */}
+        <p className="-mt-2 text-xs text-gray-500">
+          Use the same credentials next time to log back in.
+        </p>
+
+        {/* Button */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-400 via-cyan-500 to-blue-500 py-3 font-semibold text-black shadow-lg shadow-cyan-500/20 transition duration-300 hover:scale-[1.02] hover:shadow-cyan-400/30 disabled:cursor-not-allowed disabled:opacity-60"
         >
+          <span className="relative z-10">
+            {loading ? "Authenticating..." : "Continue"}
+          </span>
 
-          {/* Email */}
-          <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
-              Email
-            </label>
+          <span className="absolute inset-0 opacity-0 transition group-hover:opacity-10 bg-white" />
+        </button>
+      </form>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none transition duration-300 placeholder:text-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
-              required
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
-              Password
-            </label>
-
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none transition duration-300 placeholder:text-gray-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
-              required
-            />
-          </div>
-
-          {/* Password Hint */}
-          <p className="-mt-2 text-xs text-gray-500">
-            Use the same credentials next time
-            to log back into your account.
-          </p>
-
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 py-3 font-bold text-black shadow-lg shadow-cyan-500/20 transition duration-300 hover:scale-[1.02] hover:shadow-cyan-400/40 disabled:cursor-not-allowed disabled:opacity-70"
-          >
-            {loading
-              ? "Authenticating..."
-              : "Continue"}
-          </button>
-        </form>
-
-        {/* Footer */}
-        <div className="mt-6 border-t border-white/10 pt-5 text-center">
-          <p className="text-sm text-gray-400">
-            No separate signup needed ✨
-          </p>
-
-          <p className="mt-1 text-xs text-gray-500">
-            Enter your email and password to
-            either log in or create a new
-            account.
-          </p>
-        </div>
+      {/* Footer */}
+      <div className="mt-6 border-t border-white/10 pt-5 text-center">
+        <p className="text-sm text-gray-400">
+          No separate signup needed ✨
+        </p>
+        <p className="mt-1 text-xs text-gray-500 leading-relaxed">
+          Enter your email and password to log in or create a new account.
+        </p>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
 
 function Navbar() {
-  const { isLoggedIn, user } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const { isLoggedIn, user , setIsLoggedIn} = useContext(AuthContext)
 
   return (
     <nav className="sticky top-0 z-50 border-b border-cyan-500/10 bg-gradient-to-br from-[#050816] via-[#0b1120] to-black backdrop-blur-xl">
@@ -38,6 +39,20 @@ function Navbar() {
           >
              {isLoggedIn && "Create Contest"}
           </Link>
+
+          
+          {isLoggedIn &&
+                    <button   onClick={() => {
+                      localStorage.removeItem("contest-app-token");
+                      setIsLoggedIn(false)
+                      navigate("/login");
+                    }}
+            to="/create-contest"
+            className="rounded-xl bg-gradient-to-r from-orange-400 to-blue-500 px-5 py-2 text-sm font-bold text-black shadow-lg shadow-cyan-500/30 transition duration-300 hover:scale-105 hover:shadow-cyan-400/50"
+          >
+             Logout
+          </button>
+           }
 
 
         </div>
