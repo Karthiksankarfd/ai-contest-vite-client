@@ -27,12 +27,12 @@ function Navbar() {
           >
             {isLoggedIn && `Welcome, ${user?.email || "User"}`}
           </Link>
-            <Link
+            {/* <Link
               to="/contests"
                 className="rounded-xl px-4 py-2 text-sm font-medium text-gray-300 transition duration-300 hover:bg-purple-500/10 hover:text-purple-400"
           >
             View Contests
-          </Link>
+          </Link> */}
           <Link
             to="/create-contest"
             className="rounded-xl bg-gradient-to-r from-green-400 to-blue-500 px-5 py-2 text-sm font-bold text-black shadow-lg shadow-cyan-500/30 transition duration-300 hover:scale-105 hover:shadow-cyan-400/50"

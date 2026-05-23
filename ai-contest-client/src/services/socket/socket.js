@@ -1,10 +1,12 @@
 import { io } from "socket.io-client";
 
-export const socket = io(`${import.meta.env.VITE_BASE_API_URL}`, {
-  auth: {
-    token: localStorage.getItem("contest-app-token")
-  },
+export const socket = io(`${import.meta.env.VITE_BASE_API_URL}`,  {
+  autoConnect: false,
 });
+
+// socket.emit("authenticate", {
+//   userId: data.id,
+// });
 
 socket.on("connection", () => {
   sessionStorage.setItem("socketId", socket.id);
