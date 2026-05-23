@@ -1,0 +1,27 @@
+export const SOCKET_EVENTS = {
+
+    // Client -> Server
+    EMIT: {
+        START_CONTEST: "START_CONTEST",
+        END_CONTEST: "END_CONTEST",
+        RANK_USER : "RANK_USER",
+        JOIN_ROOM: "JOIN_ROOM",
+        SUBMIT_PROMPT: "SUBMIT_PROMPT",
+        CREATE_CONTEST: "CREATE_CONTEST",
+        ERROR: "ERROR",
+    },
+
+    // Server -> Client
+    LISTEN: {
+        CONTEST_ENDED:"CONTEST_ENDED",
+        CONTEST_STARTED: "CONTEST_STARTED",
+        CONTEST_ROOM_CREATED: "CONTEST_ROOM_CREATED",
+        USER_JOINED: "USER_JOINED",
+        NEW_MESSAGES: "NEW_MESSAGES",
+        JOB_UPDATE: "JOB_UPDATE",
+        ERROR: "ERROR",
+        IMAGE_GENERATED: "IMAGE_GENERATED",
+        RANK_UPDATE: "RANK_UPDATE",
+        JOB_FAILED: "JOB_FAILED"
+    }
+};
