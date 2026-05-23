@@ -499,6 +499,7 @@ function ContestRoom() {
         .contest-sidebar__list::-webkit-scrollbar,
         .contest-main__messages::-webkit-scrollbar {
           width: 5px;
+          
         }
         .contest-sidebar__list::-webkit-scrollbar-track,
         .contest-main__messages::-webkit-scrollbar-track {
