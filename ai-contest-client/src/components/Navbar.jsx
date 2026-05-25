@@ -7,7 +7,7 @@ function Navbar() {
   const { isLoggedIn, user , setIsLoggedIn} = useContext(AuthContext)
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-cyan-500/10 bg-gradient-to-br from-[#050816] via-[#0b1120] to-black backdrop-blur-xl">
+    <nav className=" border-b border-cyan-500/10 bg-gradient-to-br from-[#050816] via-[#0b1120] to-black backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         
         {/* Logo */}

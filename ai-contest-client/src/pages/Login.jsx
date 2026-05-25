@@ -9,14 +9,12 @@ function Login() {
   const { setUser, setIsLoggedIn } =
     useContext(AuthContext);
 
-  const [formData, setFormData] =
-    useState({
+  const [formData, setFormData] = useState({
       email: "",
       password: "",
     });
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [error, setError] =
     useState("");
@@ -86,9 +84,9 @@ function Login() {
 
         setIsLoggedIn(() => true);
 
-        setTimeout(() => {
+
           navigate("/");
-        }, 1000);
+
       } else {
         console.error(
           "Authentication failed:",
@@ -163,9 +161,9 @@ function Login() {
 
           setIsLoggedIn(true);
 
-          setTimeout(() => {
+
             navigate("/");
-          }, 1000);
+
         } else {
           console.error(
             "Token invalid"

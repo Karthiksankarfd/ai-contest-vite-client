@@ -1,12 +1,12 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import ContestCard from "../components/contest/ContestCard"
-import { useEffect } from "react";
-import { ContestListContext } from "../context/ContestList";
-import { SocketContext } from "../context/SocketContext";
+// import { useEffect } from "react";
+// import { ContestListContext } from "../context/ContestList";
+// import { SocketContext } from "../context/SocketContext";
 function Contest() {
 
-    const { socket } = useContext(SocketContext);
-    const { contestList, setContestList } = useContext(ContestListContext);
+    // const { socket } = useContext(SocketContext);
+    // const { contestList, setContestList } = useContext(ContestListContext);
 
     async function fetchContests() {
         try {
@@ -20,7 +20,7 @@ function Contest() {
             const data = await response.json();
             if (response.ok) {
                 console.log("All Contests:", data);  
-                setContestList(() => data.contests);      
+                // setContestList(() => data.contests);      
             } else {
                 console.error("Failed to fetch contests:", data);
             }
@@ -29,21 +29,21 @@ function Contest() {
         }   
     }
 
-    useEffect(() => {
-        fetchContests();
-        socket.on("joined-to-room" , (data)=>{
-        console.log("Joined Room Event :" , data )
-    })
-    }, [])
+    // useEffect(() => {
+    //     fetchContests();
+    //     socket.on("joined-to-room" , (data)=>{
+    //     console.log("Joined Room Event :" , data )
+    // })
+    // }, [])
 
 
 
   return (
     <section className="py-5">
         <div className="grid grid-cols-4 gap-4">
-            {contestList.map((contest) => (
+            {/* {contestList.map((contest) => (
                 <ContestCard key={contest?.contestId} contest={contest} />
-            ))}
+            ))} */}
         </div>
     </section>
   )

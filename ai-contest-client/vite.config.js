@@ -7,4 +7,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      '/socket.io': {
+        target: 'http://localhost:5000',  
+        ws: true,                          
+        changeOrigin: true,
+      },
+    },
+  },
 })
